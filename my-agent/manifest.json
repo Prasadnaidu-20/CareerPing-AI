@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "CareerPing AI",
+  "version": "1.0",
+  "description": "AI-powered email opportunity detector",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "permissions": [
+    "identity",
+    "storage",
+    "alarms",
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://www.googleapis.com/*",
+    "http://localhost:5000/*"
+  ],
+  "oauth2": {
+    "client_id": "570337460068-krgbs0ku80hush0rnlo87erc8f45a6nu.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/gmail.readonly"
+    ]
+  },
+  "background": {
+    "service_worker": "src/background/background.ts",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://mail.google.com/*"
+      ],
+      "js": [
+        "src/content/gmail-content.ts"
+      ]
+    }
+  ]
+}
